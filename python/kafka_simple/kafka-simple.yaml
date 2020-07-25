@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: kafka-test01
+  name: kafka-test01
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: kafka-test01
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: kafka-test01
+    spec:
+      containers:
+      - image: kafkaproducer:0.0.11
+        imagePullPolicy: IfNotPresent 
+        name: kafka-test01-kafkaproducer
+        resources: {}
+      - image: kafkaconsumer:0.0.14
+        imagePullPolicy: IfNotPresent 
+        name: kafka-test01-kafkaconsumer
+        resources: {}
+      restartPolicy: Always

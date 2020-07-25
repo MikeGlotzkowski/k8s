@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: kafkaproducer-python
+  name: kafkaproducer-python
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: kafkaproducer-python
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: kafkaproducer-python
+    spec:
+      containers:
+      - image: kafkaproducer:0.0.11
+        imagePullPolicy: IfNotPresent 
+        name: kafkaproducer-python
+      restartPolicy: Always
