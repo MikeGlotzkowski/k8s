@@ -17,7 +17,7 @@ logger.addHandler(handler)
 
 conf = {
     "bootstrap.servers": server,
-    "group.id": "default",
+    "group.id": "python-default",
     "auto.offset.reset": "earliest",
 }
 consumer = Consumer(conf)
@@ -29,4 +29,4 @@ while running:
     if msg is None:
         continue
     else:
-        logger.info("[python consumer says] received message: {}".format(msg.value().decode("utf-8")))
+        logger.info("[python consumer says] received message: {0}".format(msg.value().decode("utf-8")))

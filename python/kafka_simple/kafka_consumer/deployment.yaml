@@ -21,7 +21,7 @@ spec:
         run: kafkaconsumer-python
     spec:
       containers:
-      - image: kafkaconsumer-python:0.0.15
+      - image: kafkaconsumer-python:0.0.16
         imagePullPolicy: IfNotPresent 
         name: kafkaconsumer-python
       restartPolicy: Always

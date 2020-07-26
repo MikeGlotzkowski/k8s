@@ -21,7 +21,7 @@ spec:
         run: kafkaproducer-python
     spec:
       containers:
-      - image: kafkaproducer-python:0.0.12
+      - image: kafkaproducer-python:0.0.13
         imagePullPolicy: IfNotPresent 
         name: kafkaproducer-python
       restartPolicy: Always

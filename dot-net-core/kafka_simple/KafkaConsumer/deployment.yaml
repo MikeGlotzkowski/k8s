@@ -21,7 +21,7 @@ spec:
         run: kafkaconsumer-dot-net-core
     spec:
       containers:
-      - image: kafkaconsumer-dot-net-core:0.0.1
+      - image: kafkaconsumer-dot-net-core:0.0.3
         imagePullPolicy: IfNotPresent 
         name: kafkaconsumer-dot-net-core
       restartPolicy: Always
