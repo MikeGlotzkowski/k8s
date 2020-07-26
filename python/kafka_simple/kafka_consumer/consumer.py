@@ -29,4 +29,4 @@ while running:
     if msg is None:
         continue
     else:
-        logger.info("Received message: {}".format(msg.value().decode("utf-8")))
+        logger.info("[python consumer says] received message: {}".format(msg.value().decode("utf-8")))

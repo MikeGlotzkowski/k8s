@@ -22,7 +22,7 @@ producer = KafkaProducer(bootstrap_servers=server)
 running = True
 while running:
     rnd = randrange(10)
-    msg = "sleeping for {0}".format(str(rnd))
+    msg = "[python producer says] sleeping for {0}".format(str(rnd))
     logger.info(msg)
     producer.send(topic, str.encode(msg))
     time.sleep(rnd)

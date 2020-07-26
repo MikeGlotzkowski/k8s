@@ -2,14 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: kafkaproducer-python
-  name: kafkaproducer-python
+    run: kafkaconsumer-dot-net-core
+  name: kafkaconsumer-dot-net-core
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: kafkaproducer-python
+      run: kafkaconsumer-dot-net-core
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,10 +18,10 @@ spec:
   template:
     metadata:
       labels:
-        run: kafkaproducer-python
+        run: kafkaconsumer-dot-net-core
     spec:
       containers:
-      - image: kafkaproducer-python:0.0.12
+      - image: kafkaconsumer-dot-net-core:0.0.1
         imagePullPolicy: IfNotPresent 
-        name: kafkaproducer-python
+        name: kafkaconsumer-dot-net-core
       restartPolicy: Always
