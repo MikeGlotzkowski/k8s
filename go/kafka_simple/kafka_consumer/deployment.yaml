@@ -21,7 +21,7 @@ spec:
         run: kafkaconsumer-golang
     spec:
       containers:
-      - image: kafkaconsumer-golang:0.0.1
+      - image: sebilhd/kafkaconsumer-golang:0.0.2
         imagePullPolicy: IfNotPresent 
         name: kafkaconsumer-golang
       restartPolicy: Always
