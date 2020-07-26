@@ -18,10 +18,7 @@ jobs:
         run: ./build-all.sh
 
       - name: Login Docker Hub
-        run: ./docker-login-github.sh
-        env:
-          GITHUB_DOCKER_USERNAME: ${{ secrets.DOCKER_PASSWORD }}
-          GITHUB_DOCKER_PASSWORD: ${{ secrets.DOCKER_USERNAME }}
+        run: echo ${{ secrets.GITHUB_DOCKER_PASSWORD }} | docker login -u ${{ secrets.GITHUB_DOCKER_USERNAME }} --password-stdin
 
       - name: Push all
         run: ./push-all.sh
