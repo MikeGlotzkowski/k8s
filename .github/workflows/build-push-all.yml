@@ -2,9 +2,9 @@ name: build and push all
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -13,13 +13,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.1
-        
+
       - name: Build all
         run: ./build-all.sh
-        
+
       - name: Login Docker Hub
         run: ./docker-login-github.sh
-        
+        env:
+          GITHUB_DOCKER_USERNAME: ${{ secrets.DOCKER_PASSWORD }}
+          GITHUB_DOCKER_PASSWORD: ${{ secrets.DOCKER_USERNAME }}
+
       - name: Push all
         run: ./push-all.sh
-        
