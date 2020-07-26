@@ -18,7 +18,7 @@ jobs:
         run: ./build-all.sh
 
       - name: Login Docker Hub
-        run: echo ${{ secrets.GITHUB_DOCKER_PASSWORD }} | docker login -u ${{ secrets.GITHUB_DOCKER_USERNAME }} --password-stdin
+        run: echo ${{ secrets.GITHUB_DOCKER_PASSWORD }} | winpty docker login -u ${{ secrets.GITHUB_DOCKER_USERNAME }} --password-stdin
 
       - name: Push all
         run: ./push-all.sh
