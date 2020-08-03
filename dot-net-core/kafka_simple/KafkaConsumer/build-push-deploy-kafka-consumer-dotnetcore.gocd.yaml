@@ -1,0 +1,52 @@
+format_version: 3
+pipelines:
+  build-push-deploy-kafka-consumer-dotnetcore:
+    group: CICD
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    secure_variables:
+      DOCKER_USER: AES:AqKa1SeTPnoRWdjv7e4wwg==:RU56ZPfmeZ///uJ8y2ScIg==
+      DOCKER_SECRET: AES:gIjoMpEEfxE8ihvu9YtXlA==:QMk/ZPHI8jFjWXEYgCILOw==
+    materials:
+      git:
+        git: https://github.com/MikeGlotzkowski/k8s
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        encrypted_password: AES:hf+9fUjBAnTNb/KMW8xaGA==:Rub2R64+k6bIzeQpoYU/gQ==
+    stages:
+    - build-stage:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          build-and-push:
+            timeout: 0
+            elastic_profile_id: k8s-gocd-agent-customized
+            tasks:
+            - exec:
+                command: ./build-push.sh
+                working_directory: ./dot-net-core/kafka_simple/KafkaConsumer/
+                run_if: passed
+    - deploy-k8s:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: true
+        jobs:
+          deploy:
+            timeout: 0
+            elastic_profile_id: k8s-gocd-agent-customized
+            tasks:
+            - exec:
+                arguments:
+                - ''
+                command: ./deploy.sh
+                working_directory: ./dot-net-core/kafka_simple/KafkaConsumer
+                run_if: passed
