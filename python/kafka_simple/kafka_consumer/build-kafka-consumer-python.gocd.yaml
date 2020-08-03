@@ -1,6 +1,6 @@
 format_version: 3
 pipelines:
-  build-kafka-consumer-python:
+  build-push-deploy-kafka-consumer-python:
     group: CICD
     label_template: ${COUNT}
     lock_behavior: none

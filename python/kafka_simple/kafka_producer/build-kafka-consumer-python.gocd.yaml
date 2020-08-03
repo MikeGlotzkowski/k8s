@@ -1,6 +1,6 @@
 format_version: 3
 pipelines:
-  build-kafka-producer-python:
+  build-push-deploy-kafka-producer-python:
     group: CICD
     label_template: ${COUNT}
     lock_behavior: none
